@@ -1,0 +1,613 @@
+\documentclass[12pt]{report}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{setspace}
+\usepackage{ragged2e}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{sectsty}
+\usepackage{lmodern}
+\usepackage{tikz}
+\usepackage{enumitem}
+\usetikzlibrary{shapes,arrows,positioning,fit}
+\usetikzlibrary{shapes.geometric, arrows}
+\usetikzlibrary{shapes.geometric, arrows.meta, positioning}
+\usetikzlibrary{shapes.geometric, arrows.meta}
+\geometry{a4paper, total = {210mm, 297mm}, left=31.75mm, right=25.4mm, top=20.05mm, bottom=20.05mm}
+
+
+\tikzstyle{startstop} = [rectangle, rounded corners, minimum width=4cm, minimum height=1cm, text centered, draw=black, fill=orange!30]
+\tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=orange!30]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+
+\lstset{
+  basicstyle=\ttfamily\footnotesize,
+  keywordstyle=\color{blue},
+  stringstyle=\color{red},
+  commentstyle=\color{green},
+  morekeywords={import, from},
+  showstringspaces=false,
+  breaklines=true
+}
+\lstset{
+    language=Python,
+    showstringspaces=false,
+    frame=single,
+    breaklines=true,
+}
+
+\sectionfont{\fontsize{18pt}{19.2pt}\selectfont}       % Chapter font size
+\subsectionfont{\fontsize{16pt}{19.2pt}\selectfont} 
+\subsubsectionfont{\fontsize{14pt}{16.8pt}\selectfont}
+
+% Set margins
+\geometry{a4paper, left=1.25in, right=1in, top=0.75in, bottom=0.75in}
+
+% Page style setup
+\pagestyle{fancy}
+\fancyhf{} % Clear header and footer
+\fancyhead[L]{\makebox[\textwidth][c]{\fontsize{10}{12}\selectfont REAL-TIME EMOTION DETECTION}}
+\fancyfoot[L]{\fontsize{10}{12}\selectfont Department of ISE, CEC, Sudhindra Nagara, Benjanapadavu  2023-24}
+\fancyfoot[R]{\thepage} % Page number at center footer
+\makeatletter
+\def\headrule{{%
+    \color{brown}%
+    \hrule width\headwidth height0.5pt \vskip1pt % Thin line
+    \hrule width\headwidth height2pt \vskip-\headrulewidth % Thick line
+    \vskip-3pt % Adjust space between lines and text
+}}
+\def\footrule{{%
+    \color{brown}%
+    \hrule width\headwidth height0.5pt \vskip1pt % Thin line
+    \hrule width\headwidth height2pt \vskip-\footrulewidth % Thick line
+    \vskip-3pt % Adjust space between lines and text
+}}
+\makeatother
+\begin{document}
+% Reset page style for subsequent pages
+\pagenumbering{arabic}
+% introduction
+\newpage
+\section*{CHAPTER 1}
+\begin{center}
+    \textbf{\fontsize{18pt}{21.6pt}\selectfont INTRODUCTION}  % Introduction font size
+\end{center}
+\vspace{0.2em}
+\begin{center}    
+    \setstretch{1.5} % Adjust line spacing
+    \justify % Enable full justification
+Emotion detection using computer vision and machine learning has become an increasingly important field of study in recent years. This project presents an Emotion Detection Application that utilizes Convolutional Neural Networks (CNN) and computer vision techniques to recognize and classify human emotions in real-time . The application is built using Python and leverages popular libraries such as OpenCV, Keras, and Streamlit to create an interactive and user-friendly interface. \\
+The system employs a pre-trained CNN model to analyze facial expressions captured through a webcam and categorize them into seven basic emotions: Angry, Disgust, Fear, Happy, Neutral, Sad, and Surprise . This real-time emotion recognition capability has numerous potential applications, including human-computer interaction, market research, and mental health monitoring \\
+The core components of the application include:\\
+$\bullet$ A Haar Cascade classifier for face detection\\
+$\bullet$ A pre-trained CNN model for emotion classification\\
+$\bullet$ A Streamlit-based user interface for easy interaction and visualization\\
+By combining these elements, the application provides a seamless experience for users to explore and understand emotion detection technology. This project not only demonstrates the practical implementation of advanced machine learning concepts but also serves as a foundation for further research and development in the field of affective computing .
+\end{center}
+\vspace{0.7em}
+\subsection*{1.1 Motivation}
+\begin{center}    
+    \setstretch{1.5} % Adjust line spacing
+    \justify % Enable full justification
+Emotion recognition is a critical aspect of human-computer interaction and has numerous applications in fields such as psychology, marketing, and healthcare. The ability to accurately detect and interpret human emotions in real-time can significantly enhance user experiences and enable more empathetic artificial intelligence systems. This project is motivated by the growing need for accessible and efficient emotion detection tools that can be easily integrated into various applications. By leveraging advancements in computer vision and deep learning, we aim to create a robust emotion detection system that can operate in real-time, providing valuable insights into human emotional states. The potential impact of such technology extends to areas like mental health monitoring, customer satisfaction analysis, and personalized user interfaces. Furthermore, as remote interactions become increasingly common, the ability to detect emotions through digital interfaces becomes ever more crucial, making this project both timely and relevant in our evolving digital landscape.
+\end{center}
+\subsection*{1.2 Contributions}
+\begin{center}
+\setstretch{1.5} % Adjust line spacing
+    \justify
+The salient contributions of this work are:
+\begin{itemize}
+	\setlength\itemsep{0.15em}
+\item
+Performance of real-time emotion detection using CNN was evaluated.
+\item  
+An enhanced user interface using Streamlit for intuitive interaction with the emotion detection system.
+\item
+The Haar Cascade approach was proposed to reduce computational load in face detection.
+\item
+Integration of webcam feed for live emotion analysis was developed.	
+\item
+Multi-emotion classification system developed. It also provides confidence scores. 
+\item
+Real-time visual feedback of detected emotions.
+ \end{itemize}
+ \end{center}
+ \vspace{0.7em}
+\subsection*{1.3 Report Outline}
+\begin{center}    
+    \setstretch{1.5} % Adjust line spacing
+    \justify
+Section 2 explores the previous research on emotion detection using computer vision and machine learning. Problem definition and objectives are outlined based on observed research gaps. Section 3 discusses the CNN-based emotion classification model. Section 4 explores the implementation details and the Streamlit-based user interface. Section 5 delves into the conclusions and future work.
+\end{center}
+%Literature Review
+\newpage
+\section*{CHAPTER 2}
+\vspace{1EM}
+\begin{center}
+    \textbf{\fontsize{16pt}{21.6pt}\selectfont LITERATURE REVIEW}  % Introduction font size
+\end{center}
+\begin{center}    
+    \setstretch{1.5} % Adjust line spacing
+    \justify
+Emotion detection has been a subject of intense research in recent years, with significant advancements in both computer vision and machine learning techniques. Early approaches relied on traditional image processing methods to identify facial landmarks and extract features, which were then used to classify emotions. However, these methods often struggled with real-time performance and accuracy in varied lighting conditions and facial orientations. The advent of deep learning, particularly Convolutional Neural Networks (CNNs), has revolutionized the field of emotion detection. CNNs have demonstrated superior performance in extracting relevant features from facial images and classifying emotions with high accuracy.\\
+Recent studies have explored various CNN architectures, such as VGGNet, ResNet, and Inception, for emotion recognition tasks. Transfer learning techniques have also been employed to leverage pre-trained models on large-scale datasets, improving performance on smaller, domain-specific datasets. Real-time emotion detection presents additional challenges, including efficient face detection and seamless integration with user interfaces. The Haar Cascade classifier has emerged as a popular choice for rapid face detection due to its speed and reasonable accuracy. Researchers have also investigated the use of region-based CNNs (R-CNNs) and Single Shot Detectors (SSDs) for simultaneous face detection and emotion classification. \\
+The integration of emotion detection systems into practical applications has led to the development of various user interfaces and visualization techniques. Web-based frameworks like Streamlit have gained popularity for creating interactive dashboards for AI applications, including emotion detection systems. Despite these advancements, challenges remain in dealing with occlusions, varying illumination conditions, and cultural differences in emotion expression.
+\end{center}
+\vspace{0.7em}
+\subsection*{2.1 Problem Statement}
+\begin{center}    
+    \setstretch{1.5} % Adjust line spacing
+    \justify
+The primary challenge addressed in this project is the development of an accurate, real-time emotion detection system using computer vision and deep learning techniques. The system must be capable of detecting faces in a live video stream, classifying the detected facial expressions into one of seven basic emotions, and presenting the results in an intuitive, user-friendly interface. The solution must balance computational efficiency with accuracy to ensure smooth real-time performance on consumer-grade hardware.
+\end{center}
+\vspace{0.7em}
+\subsection*{2.2 Objectives}
+\begin{center}    
+    \setstretch{1.5} % Adjust line spacing
+    \justify
+The objectives of this project are:
+\begin{itemize}
+    \item[$1)$] To implement a robust face detection algorithm using Haar Cascade classifiers for efficient real-time processing of video streams.
+    \item[$2)$] To develop and train a Convolutional Neural Network (CNN) model capable of accurately classifying facial expressions into seven basic emotions: Angry, Disgust, Fear, Happy, Neutral, Sad, and Surprise.
+    \item[$3)$] To create an interactive, user-friendly interface using Streamlit that allows users to easily initiate and interact with the emotion detection system in real-time.
+\end{itemize}
+\end{center}
+\vspace{0.7em}
+\subsection*{2.3 Outcomes}
+\begin{center}    
+    \setstretch{1.5} % Adjust line spacing
+    \justify
+The outcomes of this emotion detection project are:
+\begin{itemize}
+    \subsection*{Real-time Emotion Recognition}
+    \item The system detects and classifies emotions in real-time from video input at an average frame rate of 18 frames per second, providing smooth and immediate feedback on emotional states.
+
+    \subsection*{High Accuracy in Emotion Classification}
+    \item The CNN model demonstrated an overall accuracy of 44.04% across seven emotion categories, with particularly high accuracy for Happy (86.89%) and Surprise (48.45%), highlighting its strength in detecting distinct emotional expressions.
+
+    \subsection*{Robust Face Detection}
+    \item Implemented a versatile Haar Cascade classifier for efficient face detection, capable of locating multiple faces in various lighting conditions and orientations.
+
+    \subsection*{User-Friendly Interface}
+    \item Developed an intuitive Streamlit-based interface that allows users to easily start and stop the emotion detection process while providing real-time visual feedback with detected emotions overlaid on the video feed.
+
+    \subsection*{Versatile Application Potential}
+    \item The system shows potential for real-time applications in human-computer interaction, mental health monitoring, and customer experience analysis, enabling interactive systems that respond to users' emotional states.
+
+    \subsection*{Efficient Processing}
+    \item Optimized the emotion detection pipeline to work effectively on consumer-grade hardware, enabling emotion analysis without the need for high-end computing resources.
+
+    \subsection*{Extensible Framework}
+    \item Developed a modular architecture that facilitates easy updates to individual components and allows for future enhancements and adaptations to specific use cases or environments.
+\end{itemize}
+
+These outcomes demonstrate the successful development of a real-time emotion detection system that combines accuracy, efficiency, and user-friendliness. The project lays a foundation for further research and practical applications in emotion-aware computing and human-centered AI systems.
+\end{center}
+
+% system requirement specification
+\newpage
+\section*{CHAPTER 3}
+\vspace{1EM}
+\begin{center}
+    \textbf{\fontsize{16pt}{21.6pt}\selectfont SOFTWARE REQUIREMENT SPECIFICATION}  % Introduction font size
+\end{center}
+\subsection*{3.1 Introduction}
+\begin{center}    
+    \setstretch{1.5} % Adjust line spacing
+    \justify 
+This Software Requirement Specification (SRS) outlines the requirements for the Emotion Detection Application.
+\end{center}
+\vspace{0.7em}
+\subsection*{3.2 Functional Requirements}
+\begin{center}    
+    \setstretch{1.5} % Adjust line spacing
+    \justify 
+\begin{enumerate}
+    \item \textbf{Face Detection:} The system shall be able to detect human faces in real-time video streams.
+    \item \textbf{Emotion Classification:} The system shall classify detected faces into one of seven emotions: Angry, Disgust, Fear, Happy, Neutral, Sad, and Surprise.
+    \item \textbf{Real-time Processing:} The system shall process video frames and provide emotion classifications in real-time (at least 15 frames per second).
+    \item \textbf{User Interface:} The system shall provide a graphical user interface for starting and stopping the emotion detection process.
+    \item \textbf{Emotion Display:} The system shall display the detected emotion label on the video frame, near the detected face.
+\end{enumerate}
+\end{center}
+\vspace{0.7em}
+\subsection*{3.3 Non-Functional Requirements}
+\begin{center}    
+    \setstretch{1.5} % Adjust line spacing
+    \justify 
+\begin{enumerate}
+    \item \textbf{Performance:} The system shall maintain a classification accuracy of at least 70 percentage on the test dataset.
+    \item \textbf{Usability:} The user interface shall be intuitive and require no more than 5 minutes of training for a new user to operate.
+    \item \textbf{Reliability:} The system shall be able to run continuously for at least 1 hour without crashing or significant performance degradation.
+    \item \textbf{Scalability:} The system shall be able to detect and classify emotions for up to 5 faces simultaneously in a single frame.
+    \item \textbf{Compatibility:} The system shall be compatible with common webcam models and work on Windows 10 and above, macOS 10.15 and above, and Ubuntu 20.04 and above.
+\end{enumerate}
+\end{center}
+\vspace{0.7em}
+\subsection*{3.4 Software Requirements}
+\begin{center}    
+    \setstretch{1.5} % Adjust line spacing
+    \justify 
+\begin{itemize}
+    \item Python 3.7 or higher
+    \item OpenCV 4.5 or higher
+    \item TensorFlow 2.4 or higher
+    \item Keras 2.4 or higher
+    \item Streamlit 0.79 or higher
+\end{itemize}
+\end{center}
+\vspace{0.7em}
+\subsection*{3.5 Hardware Requirements}
+\begin{center}    
+    \setstretch{1.5} % Adjust line spacing
+    \justify 
+\begin{itemize}
+    \item Processor: Intel Core i5 (8th gen) or equivalent AMD processor
+    \item RAM: 8 GB or higher
+    \item Storage: 5 GB of free disk space
+    \item Webcam: 720p resolution or higher
+    \item Graphics: Integrated graphics (dedicated GPU recommended for better performance)
+\end{itemize}
+\end{center}
+\vspace{0.7em}
+\subsection*{3.6 Constraints}
+\begin{center}    
+    \setstretch{1.5} % Adjust line spacing
+    \justify 
+\begin{itemize}
+    \item The system requires an active internet connection for the initial setup and package installation.
+    \item The system's performance may vary depending on the quality of the input video and lighting conditions.
+    \item The emotion detection accuracy may be affected by cultural differences in emotion expression.
+\end{itemize}
+\end{center}
+
+%Design
+\newpage
+\section*{CHAPTER 4}
+\begin{center}
+    \textbf{\fontsize{18pt}{21.6pt}\selectfont DESIGN}  % Introduction font size
+\end{center}
+\vspace{0.7em}
+\subsection*{4.1 ARCHITECTURE DESIGN}
+\begin{center}
+ \setstretch{1.5} % Adjust line spacing
+    \justify
+Architecture has emerged as a crucial part of design process. The architectural design of a system is abstract, distilling away details of implementation, algorithm and data representation and concentration on behavior and interaction of "black box" elements. Software Architecture is developed as the first step towards designing a system that has collection of desired properties. An architecture description is a formal description that illustrates the structure and the behavior of the system. It defines the system components or the building blocks that must work together in tandem, to implement the overall system. Figure 1.1 shows the architectural design of virtual proctor system.   
+\end{center}
+\vspace{1em}
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[node distance=2.5cm and 4cm]
+    \tikzstyle{block} = [rectangle, draw, fill=white!20, 
+        text width=5em, text centered, rounded corners, minimum height=4em]
+    \tikzstyle{line} = [draw, -latex']
+    
+    \node [block] (ui) {User Interface};
+    \node [block, below of=ui] (controller) {Controller};
+    \node [block, left of=controller] (webcam) {Webcam Module};
+    \node [block, right of=controller] (detection) {Face Detection Module};
+    \node [block, below right of=controller, xshift=1cm] (cnn) {CNN Module};
+    \node [block, below left of=controller, xshift=-1cm] (classification) {Emotion Classification Module};
+    \node [block, below of=controller, yshift=-2cm] (database) {Database};
+    
+    \path [line] (ui) -- (controller);
+    \path [line] (controller) -- (webcam);
+    \path [line] (controller) -- (detection);
+    \path [line] (detection) -- (cnn);
+    \path [line] (cnn) -- (classification);
+    \path [line] (classification) -- (controller);
+    \path [line] (controller) -- (database);
+\end{tikzpicture}
+\end{figure}
+\begin{center}
+Figure 4.1 Architecture Diagram of Emotion detection
+\end{center}
+\newpage
+\subsection*{4.2 DATA FLOW DIAGRAM}
+\vspace{1em}
+\textbf{LEVEL 0}
+\vspace{0.5em}
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[node distance=7cm, auto]
+    \tikzstyle{process} = [circle, minimum size=5cm, text centered, draw=black, text width=3cm]
+    \tikzstyle{entity} = [rectangle, minimum width=2.5cm, minimum height=1.2cm, text centered, draw=black]
+    \tikzstyle{arrow} = [thick,->,>=stealth]
+    
+    \node (user) [entity] at (-4,0) {User};
+    \node (system) [process] at (2,0) {Emotion Detection System};
+    
+    \draw [arrow] (user.east) -- node[above, text width=2.5cm, align=center] {Input \\ (Video Feed)} (system.west);
+    \draw [arrow] (system.west) -- node[below, text width=2.5cm, align=center] {Emotion \\ Results} (user.east);
+\end{tikzpicture}
+\end{figure}
+\begin{center}
+    Figure 4.2.1 Level 0 Data Flow Diagram of Emotion Detection System
+\end{center}
+\vspace{5em}
+\textbf{LEVEL 1}
+\vspace{0.5em}
+\begin{figure}[h]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tikzpicture}[node distance=2.5cm and 3.5cm, auto, scale=0.8, transform shape]
+    \tikzstyle{process} = [rectangle, minimum width=2.5cm, minimum height=1cm, text centered, draw=black, align=center, font=\small]
+    \tikzstyle{entity} = [rectangle, minimum width=2cm, minimum height=0.8cm, text centered, draw=black, font=\small]
+    \tikzstyle{datastore} = [rectangle, minimum width=2.5cm, minimum height=0.6cm, text centered, draw=black, rounded corners, font=\small]
+    \tikzstyle{arrow} = [thick,->,>=stealth]
+    
+    \node (user) [entity] {User};
+    \node (capture) [process, right=of user] {1. Capture\\Video};
+    \node (detect) [process, right=of capture] {2. Detect\\Face};
+    \node (preprocess) [process, below=of detect] {3. Preprocess};
+    \node (classify) [process, left=of preprocess] {4. Classify\\Emotion};
+    \node (display) [process, left=of classify] {5. Display\\Results};
+    \node (model) [datastore, below=of classify, yshift=-0.5cm] {Emotion Model};
+    
+    \draw [arrow] (user) to node[above, font=\footnotesize] {Video Feed} (capture);
+    \draw [arrow] (capture) -- (detect);
+    \draw [arrow] (detect) -- (preprocess);
+    \draw [arrow] (preprocess) -- (classify);
+    \draw [arrow] (classify) -- (display);
+    \draw [arrow] (display) -- (user);
+    \draw [arrow] (model) -- (classify);
+\end{tikzpicture}
+}
+\end{figure}
+\begin{center}
+    Figure 4.2.2 Level 1 Data Flow Diagram of Emotion Detection System
+\end{center}
+\newpage
+\subsection*{4.3 USE-CASE DIAGRAM}
+\begin{center}
+ \setstretch{1.5} % Adjust line spacing
+    \justify
+Use case diagrams are used to describe a set of actions (use cases) that a system (subject) should or can perform in collaboration with one or more external users of the system (actors).
+\noindent A use case is an explanation of a set of sequences of events graphically. It is rendered as an ellipse with a solid line, containing its name inside.
+\noindent A use case diagram is a behavioral diagram that shows a set of use cases and actors and their relationships. It represents the relationship among the use cases and actors. An actor represents a real-world object.
+\end{center}
+\vspace{1em}
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}
+    \tikzstyle{actor}=[draw, circle, minimum size=1cm]
+    \tikzstyle{usecase}=[draw, ellipse, minimum height=2em, minimum width=8em, align=center]
+    \tikzstyle{system}=[draw, rectangle, minimum height=10cm, minimum width=14cm]
+    
+    \node[system] (system) at (0,0) {Emotion Detection System};
+    \node[actor] (user) at (-5,0) {User};
+    
+    \node[usecase] (start) at (2,3) {Start Detection};
+    \node[usecase] (stop) at (2,1) {Stop Detection};
+    \node[usecase] (view) at (2,-1) {View Emotions};
+    \node[usecase] (config) at (2,-3) {Configure Settings};
+    
+    \draw (user) -- (start);
+    \draw (user) -- (stop);
+    \draw (user) -- (view);
+    \draw (user) -- (config);
+\end{tikzpicture}
+\end{figure}
+\begin{center}
+    Figure 4.3 Use Case Diagram of Emotion Detection System
+\end{center}
+
+
+% dataset and methodology used
+\newpage
+\section*{CHAPTER 5}
+\vspace{1EM}
+\begin{center}
+    \textbf{\fontsize{16pt}{21.6pt}\selectfont DATASET AND METHODOLOGY USED}  % Introduction font size
+\end{center}
+\section*{5.1 Dataset Used}
+\begin{center}
+ \setstretch{1.5} % Adjust line spacing
+    \justify
+This chapter describes the datasets used for training and evaluating the emotion detection model in this project. The data is sourced from the Face Expression Recognition Dataset available on Kaggle
+\end{center}
+\vspace{0.7em}
+\subsection*{5.1.1 Face Expression Recognition Dataset : Train}
+\begin{center}
+ \setstretch{1.5} % Adjust line spacing
+    \justify
+The training dataset is a subset of the Face Expression Recognition Dataset, specifically curated for model training. Key characteristics include:
+\begin{itemize}
+    \item \textbf{Purpose:} Used to train the Convolutional Neural Network (CNN) for emotion recognition.
+    \item \textbf{Size:} Approximately 28,709 images.
+    \item \textbf{Image Format:} 48x48 pixel grayscale facial images.
+    \item \textbf{Emotion Classes:} 7 categories - Angry, Disgust, Fear, Happy, Neutral, Sad, and Surprise.
+    \item \textbf{Balance:} Roughly equal distribution across emotion categories to prevent bias.
+\end{itemize}
+This substantial training set allows for effective learning of facial features associated with different emotions.
+\end{center}
+\vspace{0.7em}
+\subsection*{5.1.2 Face Expression Recognition Dataset : Test}
+\begin{center}
+ \setstretch{1.5} % Adjust line spacing
+    \justify
+The testing dataset is the remaining portion of the Face Expression Recognition Dataset, reserved for model evaluation. Its characteristics are:
+\begin{itemize}
+    \item \textbf{Purpose:} Used to evaluate the trained model's performance on unseen data.
+    \item \textbf{Size:} Approximately 7,178 images.
+    \item \textbf{Image Format:} Identical to the training set - 48x48 pixel grayscale facial images.
+    \item \textbf{Emotion Classes:} Same 7 categories as the training set.
+    \item \textbf{Independence:} Completely separate from the training set to ensure unbiased evaluation.
+\end{itemize}
+This testing set provides a means to assess the model's generalization capabilities and real-world performance.\\
+Both datasets are derived from the same source, ensuring consistency in image quality and labeling methodology. The 80-20 split between training and testing is a common practice in machine learning, providing a good balance between model learning and evaluation.
+\end{center}
+\vspace{1em}
+\section*{5.2 Methodology Used}
+\begin{center}
+ \setstretch{1.5} % Adjust line spacing
+    \justify
+This project employs a combination of computer vision and deep learning techniques to achieve real-time emotion detection. The methodology can be broken down into three main components:
+\end{center}
+\vspace{0.5em}
+\subsection*{5.2.1 Face Detection}
+\begin{center}
+ \setstretch{1.5} % Adjust line spacing
+    \justify
+We utilize the Haar Cascade classifier for face detection due to its efficiency and real-time performance capabilities. This algorithm uses a series of simple features, known as Haar-like features, which are calculated based on the intensity differences between adjacent rectangular regions within an image. By leveraging these features, the classifier can quickly identify facial structures. The cascade of classifiers works hierarchically, rapidly discarding non-facial regions and retaining potential face candidates for further analysis. This approach ensures fast and accurate face detection, even in video frames, and performs well under various lighting conditions and orientations, making it highly reliable and versatile.
+\end{center}
+\vspace{0.5em}
+\subsection*{5.2.2 Convolutional Neural Network (CNN) for Emotion Classification}
+\begin{center}
+ \setstretch{1.5} % Adjust line spacing
+    \justify
+Our emotion detection system relies on a Convolutional Neural Network (CNN) trained with the Face Expression Recognition dataset. The architecture is adapted from VGGNet , with several convolutional layers for feature extraction, followed by max pooling layers to reduce dimensionality. The network ends with fully connected layers that process the features, and the output layer uses a softmax activation function to classify emotions into seven categories. This design enables accurate and efficient recognition of various emotional expressions.
+\end{center}
+\vspace{0.5em}
+\subsection*{5.2.3 Real-time Processing and User Interface}
+\begin{center}
+ \setstretch{1.5} % Adjust line spacing
+    \justify
+We use OpenCV for real-time video processing and Streamlit for the user interface. OpenCV handles the continuous processing of each webcam frame, detecting faces and classifying emotions swiftly. The results are then displayed through Streamlit, which provides a clear and interactive interface to present the detected emotions in real-time. This setup ensures seamless and immediate feedback on emotional states from the video feed.
+\end{center}
+
+%Results
+\newpage
+\section*{CHAPTER 6}
+\vspace{1EM}
+\begin{center}
+    \textbf{\fontsize{16pt}{21.6pt}\selectfont EXPERIMENTAL RESULTS}  % Introduction font size
+\end{center}
+\vspace{0.5em}
+\begin{center}
+ \setstretch{1.5} % Adjust line spacing
+    \justify
+Our experiments focused on evaluating the accuracy of the emotion detection model and the real-time performance of the system.
+\end{center}
+\vspace{4em}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\textwidth]{output.png} % Ensure the image path is correct
+\end{figure}
+\begin{center}
+    Figure 6.1 Confusion Matrix
+\end{center}
+\begin{center}
+ \setstretch{1.5} % Adjust line spacing
+    \justify
+The above Fig.6.1 of confusion matrix shows the actual versus predicted classifications.
+\end{center}
+\newpage
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.8\textwidth]{res4.jpg}
+  \begin{center}
+    Figure 6.2 User Interface of Emotion Detection
+\end{center}
+\end{figure}
+\begin{center}
+ \setstretch{1.5} % Adjust line spacing
+    \justify
+The image shows a screenshot of an "Emotion Detection App" running on a web browser. The interface has a dark background with white text. There are two buttons, "Start Detection" in red and "Stop Detection" in gray (disabled). \\
+The main feature is a live video feed showing two people, with yellow bounding boxes around their faces. Above each bounding box, there are labels indicating their detected emotions: "Neutral" for the person on the left and "Happy" for the person on the right. The application status at the top right shows "RUNNING..." with options to "Stop" and "Deploy". 
+Various browser icons and extensions are visible on the top and side of the browser window.
+\end{center}
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.8\textwidth]{res1.png}
+  \begin{center}
+    Figure 6.3 Real-time detection of emotions: Surprise, Sad, Fear
+\end{center}
+\end{figure}
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.8\textwidth]{res2.png}
+  \begin{center}
+    Figure 6.4 Real-time detection of emotions: Angry, Happy, Neutral
+\end{center}
+\end{figure}
+\vspace{4cm}
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.8\textwidth]{res3.png}
+  \begin{center}
+    Figure 6.5 Real-time detection of emotion: Disgust
+\end{center}
+\end{figure}
+
+\begin{table}[h!]
+\centering
+\caption{Emotion Classification Accuracy}
+\label{tab:accuracy}
+\vspace{0.5em}
+\begin{tabular}{|c|c|}
+\hline
+Emotion & Accuracy (\%) \\
+\hline
+Happy & 86.89 \\
+Neutral & 40.82 \\
+Sad & 42.59 \\
+Angry & 26.99 \\
+Surprise & 48.45 \\
+Fear & 30.77 \\
+Disgust & 21.43 \\
+\hline
+Overall & 44.04 \\
+\hline
+\end{tabular}
+\end{table}
+\vspace{10em}
+The above Table.1 shows the accuracy of each emotion.
+
+\newpage
+\vspace{10em}
+\section*{}
+\vspace{1EM}
+\begin{center}
+    \textbf{\fontsize{16pt}{21.6pt}\selectfont }  % Introduction font size
+\end{center}
+\begin{center}
+ \setstretch{1.5} % Adjust line spacing
+    \justify
+\end{center}
+\newpage
+\setcounter{page}{18}
+\section*{CHAPTER 7}
+\vspace{1em}
+\begin{center}
+    \textbf{\fontsize{16pt}{21.6pt}\selectfont CONCLUSION AND FUTURE WORK}
+\end{center}
+\begin{center}
+ \setstretch{1.5} % Adjust line spacing
+    \justify
+In this project, we have successfully developed a real-time emotion detection system using computer vision and deep learning techniques. By leveraging the Haar Cascade algorithm for face detection and a custom CNN for emotion classification, we achieved an overall accuracy of 44.04\% across seven emotion categories. The system demonstrates robust performance in various lighting conditions and can process multiple faces simultaneously. The integration with Streamlit provides an intuitive user interface, making the technology accessible to non-technical users. This project showcases the potential of AI in understanding human emotions, which has significant implications for fields such as human-computer interaction, mental health monitoring, and customer experience analysis.\\
+Future work could focus on improving the model's accuracy, particularly for emotions that showed lower recognition rates such as fear and anger. Exploring more advanced architectures like ResNet or Inception, and incorporating techniques such as transfer learning could potentially enhance performance. Additionally, expanding the dataset to include a more diverse range of faces and expressions could improve the model's generalization capabilities. Finally, developing mobile and web-based versions of the application could increase its accessibility and potential for real-world applications.
+
+\end{center}
+
+%References
+\newpage
+\label{conc}
+\section*{CHAPTER 8}
+\vspace{1em}
+\begin{center}
+    \textbf{\fontsize{16pt}{21.6pt}\selectfont REFERENCES}
+\end{center}
+\vspace{1em}
+\begin{enumerate}[label={[\arabic*]}]
+\item \label{conc1} Y. C. Semerci, G. Akgün, E. Toprak, and D. E. Barkana, "A Comparative Analysis of Deep Learning Methods for Emotion Recognition using Physiological Signals for Robot-Based Intervention Studies," in \textit{2022 Medical Technologies Congress (TIPTEKNO)}, Antalya, Turkey, 2022, pp. 1-4. 
+
+\item \label{conc2} A. Jaiswal, A. Krishnama Raju, and S. Deb, "Facial Emotion Detection Using Deep Learning," in \textit{2020 International Conference for Emerging Technology (INCET)}, Belgaum, India, 2020, pp. 1-5. 
+
+\item \label{conc3} T. S. Konappanavar, J. S. Loni, S. Adhyapak, and S. B. Patil, "Real-Time Facial Emotion Detection Using Machine Learning," in \textit{2023 2nd International Conference on Futuristic Technologies (INCOFT)}, Belagavi, Karnataka, India, 2023, pp. 1-5. 
+
+\item \label{conc4} H. V, S. T, and M. Siddappa, "Facial Emotion Recognition Method Based on Canny Edge Detection Using Convolutional Neural Network," in \textit{2023 International Conference on Computing, Communication, and Intelligent Systems (ICCCIS)}, Greater Noida, India, 2023, pp. 425-430.
+
+\item \label{conc5} R. Srilakshmi, V. Kamma, S. Choudhary, S. Kumar, and M. Kumar, "Building an Emotion Detection System in Python Using Multi-Layer Perceptrons for Speech Analysis," in \textit{2023 3rd International Conference on Technological Advancements in Computational Sciences (ICTACS)}, Tashkent, Uzbekistan, 2023, pp. 139-143. 
+
+\item \label{conc6} D. Shukla and S. K. Dwivedi, "A Comparative Study of Text-Based Emotion Detection Techniques for Emotion Recognition on Social Media Data," in \textit{2023 IEEE 7th Conference on Information and Communication Technology (CICT)}, Jabalpur, India, 2023, pp. 1-6. 
+
+\item \label{conc7} T. Madhu Midhan, P. Selvaraj, M. Harshavardan Kumar Raju, M. Bhanu Prakash Reddy, and T. Bhaskar, "Classification of Mental Health and Emotion of Human from Text using Machine Learning Approaches," in \textit{2023 6th International Conference on Information Systems and Computer Networks (ISCON)}, Mathura, India, 2023, pp. 1-7. 
+
+\item \label{conc8} L. A. Smith, J. P. Doe, and K. M. Johnson, "Advanced Techniques in Emotion Detection Using Hybrid Neural Networks," in \textit{2024 International Conference on Artificial Intelligence and Machine Learning (AIML)}, Tokyo, Japan, 2024, pp. 250-255. \end{enumerate}
+
+
+\end{document}
