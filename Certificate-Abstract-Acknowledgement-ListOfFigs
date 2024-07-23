@@ -1,0 +1,306 @@
+\documentclass[12pt, a4paper]{report}
+\usepackage{graphicx}
+\usepackage{csquotes}
+\usepackage{geometry}
+\usepackage{tocloft}
+\usepackage{ragged2e}
+\usepackage{setspace}
+\usepackage{mathptmx}
+\usepackage{float}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage[hidelinks]{hyperref}
+\usepackage[dvipsnames]{xcolor}
+
+\geometry{a4paper, total = {210mm, 297mm}, left=31.75mm, right=25.4mm, top=20.05mm, bottom=20.05mm}
+
+\titleformat{\chapter}[display]
+  {\normalfont\bfseries}
+  {\fontsize{16}{19}\selectfont\MakeUppercase\chaptertitlename\ \thechapter}
+  {16pt}
+  {\fontsize{18}{22}\selectfont\centering\vspace{-10pt}} % adjust the spacing here
+\titlespacing{\chapter}{0pt}{-35pt}{20pt}
+
+\titleformat{\section}
+  {\normalfont\fontsize{16}{19}\bfseries}{\thesection}{1em}{}
+\titlespacing*{\section}{0pt}{3.5ex plus 1ex minus .2ex}{2.3ex plus .2ex}
+
+% Custom environments for various pages
+\newenvironment{coverPage}{\begin{titlepage}\begin{center}}{\end{center}\end{titlepage}}
+\newenvironment{certificatePage}{\begin{titlepage}\begin{center}}{\end{center}\end{titlepage}}
+
+\newenvironment{Abstract}{
+    \clearpage
+    \pagestyle{plain}
+    \pagenumbering{roman}
+    \setcounter{page}{1}
+    \begin{center}
+}{
+    \end{center}
+}
+
+\newenvironment{acknowledgment}{
+    \clearpage
+    \pagestyle{plain}
+    \begin{center}
+}{
+    \end{center}
+}
+{
+}
+\newenvironment{ListOfFigures}{
+    \clearpage
+    \pagestyle{plain}
+    \begin{center}
+    \textbf{\fontsize{18}{22}\selectfont LIST OF FIGURES}
+    \vspace{1cm}
+    \end{center}
+}{
+}
+\newenvironment{ListOfTables}{
+    \clearpage
+    \pagestyle{plain}
+    \begin{center}
+    \textbf{\fontsize{18}{22}\selectfont LIST OF TABLES}
+    \vspace{1cm}
+    \end{center}
+}
+
+
+% Set up fancy style for introduction and onwards
+
+\renewcommand{\figurename}{Fig.} 
+
+% Redefine plain style to match fancy for chapter pages
+
+
+
+
+% Modify chapter command to use fancy style
+\let\oldchapter\chapter
+\renewcommand{\chapter}{\thispagestyle{fancy}\oldchapter}
+
+
+
+% Begin the document
+\begin{document}
+
+% ----------------------- Cover Page Start -------------------------------
+\begin{coverPage}
+    \textbf{\fontsize{18}{22}\selectfont \makebox[0pt][c]{VISVESVARAYA TECHNOLOGICAL UNIVERSITY}} \\
+    \vspace{0.1in}
+    {\fontsize{16}{22}\selectfont \enquote{Jnana Sangama}, Belagavi, Karnataka-590018} \\
+    \vspace{0.3in}
+    \includegraphics[scale=0.4]{vtu-logo.jpeg} \\
+    \vspace{0.3in}
+    
+    \textbf{\fontsize{18}{22}\selectfont A MINI PROJECT REPORT} \\
+    \vspace{0.1in}
+    \textbf{\fontsize{16}{22}\selectfont ON} \\
+    \vspace{0.1in}
+    \textbf{\fontsize{16}{22}\selectfont Real Time Emotion Detection } \\
+    \vspace{0.2in}
+    {\fontsize{14}{22}\selectfont Submitted in partial fulfilment of the requirements for the degree of} \\
+    \vspace{0.1in}
+    \textbf{\fontsize{14}{22}\selectfont BACHELOR OF ENGINEERING} \\ 
+    \textbf{\fontsize{14}{22}\selectfont IN} \\ 
+    \textbf{\fontsize{14}{22}\selectfont INFORMATION SCIENCE AND ENGINEERING} \\
+    \vspace{0.2in}
+    
+    \textbf{\fontsize{14}{22}\selectfont Submitted by} \\
+    \vspace{0.08in}
+    \hspace{1cm}
+\begin{tabular}{ll}
+    \fontsize{14}{22}\selectfont \textbf{4CB21IS016} & \hspace{1cm} \fontsize{14}{22}\selectfont \textbf{Diya} \\
+    \fontsize{14}{22}\selectfont \textbf{4CB21IS038} & \hspace{1cm} \fontsize{14}{22}\selectfont \textbf{Prithvi S Nayak} \\
+    \fontsize{14}{22}\selectfont \textbf{4CB21IS042} & \hspace{1cm} \fontsize{14}{22}\selectfont \textbf{Samridhi S} \\
+    \fontsize{14}{22}\selectfont \textbf{4CB21IS048} & \hspace{1cm} \fontsize{14}{22}\selectfont \textbf{Shraddha J Naik} \\
+\end{tabular}
+
+    \vspace{0.2in}
+    
+    \textbf{\fontsize{14}{22}\selectfont Under the Guidance of} \\
+        \vspace{0.1in}
+    \textbf{\fontsize{14}{22}\selectfont Mrs. Sushma M D} \\
+    \fontsize{12}{22}\selectfont Assistant Professor\\
+    \vspace{0.2in}
+
+    \includegraphics[scale=1.25]{new.png} \\
+    {\textbf{\fontsize{14}{22}\selectfont DEPARTMENT OF INFORMATION SCIENCE AND ENGINEERING}} \\
+    \textbf{\fontsize{18}{22}\selectfont CANARA ENGINEERING COLLEGE} \\
+    {\textbf{\fontsize{14}{22}\selectfont \makebox[0pt][c]{SUDHINDRA NAGARA, BENJANAPADAVU, BANTWAL-574219}}} \\
+    \vspace{0.1in}
+    {\textbf{\fontsize{14}{22}\selectfont 2023-2024}}
+\end{coverPage}
+
+\clearpage
+% ----------------------- Cover Page Done -------------------------------
+
+% ----------------------- Certificate Page Start ------------------------
+\begin{certificatePage}
+    \textbf{\fontsize{20}{22}\selectfont CANARA ENGINEERING COLLEGE} \\
+    \textbf{\fontsize{14}{22}\selectfont SUDHINDRA NAGARA, BENJANAPADAVU, BANTWAL - 574219}\\
+    \vspace{0.2in}
+    \textbf{\fontsize{12}{22}\selectfont DEPARTMENT OF INFORMATION SCIENCE AND ENGINEERING}\\
+    \includegraphics[scale = 1]{new.png}
+    \\
+    \vspace{0.4in}
+    \textbf{\fontsize{20}{22}\selectfont CERTIFICATE} \\
+    \vspace{0.2in}
+    \justify
+    \fontsize{11}{22}\selectfont This is to certify that the mini project work entitled \textbf{Real Time Emotion Detection} carried out by \textbf{Ms. Diya bearing USN 4CB21IS016}, \textbf{Ms. Prithvi S Nayak bearing USN 4CB21IS038}, \textbf{Ms. Samridhi S bearing USN 4CB21IS042}, and \textbf{Ms. Shraddha J Naik bearing USN 4CB21IS048}, a bonafide student of \textbf{CANARA ENGINEERING COLLEGE, BENJANAPADAVU} in partial fulfilment for the award of \textbf{BACHELOR OF ENGINEERING} in \textbf{INFORMATION SCIENCE AND ENGINEERING} of the \textbf{VISVESVARAYA TECHNOLOGICAL UNIVERSITY, BELAGAVI} during the year \textbf{2023 - 2024}. The project report has been approved as it satisfies the academic requirements in respect of Mini Project work prescribed for the said Degree.\\
+    \\
+    \\
+    \\
+    \noindent
+    
+    \begin{minipage}[t]{0.3\textwidth}
+        \begin{center}
+            \hrulefill \\
+            \textbf{\fontsize{12}{22}\selectfont Signature} \\
+            \textbf{\fontsize{12}{22}\selectfont Mrs. Sushma M D} \\  
+            \textbf{\fontsize{12}{22}\selectfont Assistant Professor} \\ 
+            \textbf{\fontsize{12}{22}\selectfont Department of ISE} \\
+        \end{center}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.3\textwidth}
+        \begin{center}
+            \hrulefill \\
+            \textbf{\fontsize{12}{22}\selectfont Signature} \\
+            \textbf{\fontsize{12}{22}\selectfont Dr. H Manoj T Gadiyar } \\
+            \textbf{\fontsize{12}{22}\selectfont Associate Professor/HOD} \\
+            \textbf{\fontsize{12}{22}\selectfont Department of ISE} \\
+        \end{center}
+    \end{minipage}
+\end{certificatePage}
+\clearpage
+
+% ----------------------- Certificate Page Done ------------------------
+
+% ----------------------- Abstract Page ------------------------
+
+\begin{Abstract}
+ \setcounter{page}{2}
+    \textbf{\fontsize{18}{22}\selectfont ABSTRACT}\\
+    \vspace{0.1in}
+    \onehalfspacing
+    \justify
+    \fontsize{12}{22}\selectfont 
+Emotion detection is vital for enhancing human-computer interaction, enabling machines to interpret and respond to human emotions accurately. This project employs Convolutional Neural Networks (CNNs) with the Keras framework to develop an emotion detection system, utilizing a comprehensive dataset from Kaggle. Data preprocessing is performed using Pandas to ensure optimal input for the CNN. The CNN architecture, with multiple convolutional layers, captures the nuances of facial expressions. Keras' user-friendly API facilitates model construction and hyperparameter tuning. The model is evaluated on a test set, showcasing high accuracy in emotion classification, emphasizing the importance of preprocessing and optimization in such tasks.
+\end{Abstract}
+
+% ----------------------- Abstract Page  Done------------------------
+
+
+% ----------------------- Acknowledgement Page ------------------------
+\begin{acknowledgment}
+ \setcounter{page}{1}
+    \textbf{\fontsize{18}{22}\selectfont ACKNOWLEDGEMENT}\\
+    \vspace{0.1in}
+    \justify
+    \fontsize{12}{22}\selectfont It is our great pleasure to acknowledge the assistance and contributions of all the people who helped us to make our Mini Project successful.
+    \vspace{0.3in} \\
+    \fontsize{12}{22}\selectfont We wish to express our deepest gratitude to project guide \textbf{Mrs. Sushma M D}, \textbf{Department of Information Science and Engineering, CEC, Mangalore}, for their invaluable support, guidance, and encouragement throughout the duration of this project.
+    \vspace{0.3in} \\
+    \fontsize{12}{22}\selectfont We extend our thanks to \textbf{Mr. Ajith Kumar B P}, \textbf{Project Coordinator, Department of Information Science \& Engineering, CEC, Mangalore}, for their exceptional support and coordination throughout this project. 
+    \vspace{0.3in} \\
+    \fontsize{12}{22}\selectfont We are extremely grateful to \textbf{Dr. H Manoj T Gadiyar, Head of the Information Science \& Engineering Department, CEC}, Mangalore, for his moral support and valuable suggestions throughout this project.
+    \vspace{0.3in} \\
+    \fontsize{12}{22}\selectfont  We would like to express our deepest gratitude to our Principal \textbf{Dr. Nagesh H R,  Principal},whose unwavering support and guidance have been instrumental in the successful completion of this project.
+    \vspace{0.3in} \\
+    \fontsize{12}{22}\selectfont We would like to express our sincere thanks to all teaching and non-teaching staff members for their kind support during this project work.
+    \vspace{0.3in} \\
+    \fontsize{12}{22}\selectfont 
+    \noindent\makebox[\textwidth][r]{
+        \begin{minipage}{2.8in}
+        \raggedright
+        \textbf{\fontsize{12}{22}\selectfont Diya} \hfill
+        \raggedleft
+        \textbf{\fontsize{12}{22}\selectfont 4CB21IS016} \\
+        \raggedright
+        \textbf{\fontsize{12}{22}\selectfont Prithvi  S Nayak} \hfill
+        \raggedleft
+        \textbf{\fontsize{12}{22}\selectfont 4CB21IS038} \\
+        \raggedright
+        \textbf{\fontsize{12}{22}\selectfont Samridhi S} \hfill
+        \raggedleft
+        \textbf{\fontsize{12}{22}\selectfont 4CB21IS042} \\
+        \raggedright
+        \textbf{\fontsize{12}{22}\selectfont Shraddha J Naik} \hfill
+        \raggedleft
+        \textbf{\fontsize{12}{22}\selectfont 4CB21IS048}
+        \end{minipage}
+    }
+    
+\end{acknowledgment}
+\clearpage
+
+%-------------Table of Contents ----------------------------
+
+% ----------------------- List of Figures Page ------------------------
+\begin{ListOfFigures}
+\end{ListOfFigures}
+ \setcounter{page}{4}
+\begingroup
+  \let\clearpage\relax
+  \let\cleardoublepage\relax
+  \renewcommand{\listfigurename}{\centering\textbf{LIST OF FIGURES}\par\vspace{1em}} 
+  
+  % Remove dots from list of figures
+  \makeatletter
+  \renewcommand{\@dotsep}{10000}
+  
+  % Preserve the current page style
+  \let\ps@lof\ps@plain
+  \let\ps@plain\ps@plain
+  
+  \begin{table}[h]
+\centering
+\begin{tabular}{@{}p{0.2\textwidth}@{\hspace{1em}}p{0.65\textwidth}p{0.15\textwidth}@{}}
+  \textbf{FIGURE NO.} &\textbf{FIGURE NAME} & \textbf{PAGE NO.} \\ \\
+  4.1 & System Architecture Design & 08 \\ \\
+  4.2.1 & Level-0 Data Flow Diagram & 09 \\ \\
+  4.2.2 & Level-1 Data Flow Diagram & 09 \\ \\
+  4.3 & Use-Case Diagram & 10 \\ \\
+  6.1 & Confusion Matrix & 14 \\ \\
+  6.2 & User Interface of Emotion Detection & 15 \\ \\ 
+  6.3 & Real-time detection of emotions: Surprise, Sad, Fear & 15 \\ \\
+  6.4 & Real-time detection of emotions: Angry, Happy, Neutral & 16 \\ \\
+  6.5 & Real-time detection of emotion: Disgust & 16 \\ \\
+\end{tabular}
+\end{table}
+
+  \makeatother
+\endgroup
+\clearpage
+
+% ----------------------- List of Tables Page ------------------------
+\begin{ListOfTables}
+\end{ListOfTables}
+ \setcounter{page}{5}
+\begingroup
+  \let\clearpage\relax
+  \let\cleardoublepage\relax
+  \renewcommand{\listfigurename}{\centering\textbf{LIST OF TABLES}\par\vspace{1em}} 
+  
+  % Remove dots from list of figures
+  \makeatletter
+  \renewcommand{\@dotsep}{10000}
+  
+  % Preserve the current page style
+  \let\ps@lof\ps@plain
+  \let\ps@plain\ps@plain
+  
+  \begin{table}[h]
+\centering
+\begin{tabular}{@{}p{0.2\textwidth}@{\hspace{1em}}p{0.65\textwidth}p{0.15\textwidth}@{}}
+  \textbf{TABLE NO.} &\textbf{TABLE NAME} & \textbf{PAGE NO.} \\ \\
+  1.0 & Emotion Classification Accuracy & 17 \\ \\
+\end{tabular}
+\end{table}
+
+  \makeatother
+\endgroup
+\clearpage
+\end{document}
